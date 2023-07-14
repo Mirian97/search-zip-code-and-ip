@@ -1,0 +1,154 @@
+{% extends "base.html" %} {% block content %}
+<ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+  <li class="nav-item" role="check-infos">
+    <button
+      class="nav-link active"
+      id="zip-code-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#zip-code-tab-pane"
+      type="button"
+      role="tab"
+      aria-controls="zip-code-tab-pane"
+      aria-selected="true"
+    >
+      CEP
+    </button>
+  </li>
+  <li class="nav-item" role="check-infos">
+    <button
+      class="nav-link"
+      id="location-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#location-tab-pane"
+      type="button"
+      role="tab"
+      aria-controls="location-tab-pane"
+      aria-selected="false"
+    >
+      IP
+    </button>
+  </li>
+  {% if zipCodeData %}
+  <li class="nav-item" role="check-infos">
+    <button
+      class="nav-link"
+      id="result-zip-code-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#result-zip-code-tab-pane"
+      type="button"
+      role="tab"
+      aria-controls="result-zip-code-tab-pane"
+      aria-selected="false"
+    >
+      Resultado CEP
+    </button>
+  </li>
+  {% endif %} {% if locationData %}
+  <li class="nav-item" role="check-infos">
+    <button
+      class="nav-link"
+      id="result-location-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#result-location-tab-pane"
+      type="button"
+      role="tab"
+      aria-controls="result-location-tab-pane"
+      aria-selected="false"
+    >
+      Resultado IP
+    </button>
+  </li>
+  {% endif %}
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div
+    class="tab-pane fade show active"
+    id="zip-code-tab-pane"
+    role="tabpanel"
+    aria-labelledby="zip-code-tab"
+    tabindex="0"
+  >
+    <h3 class="fs-3 mt-4">Consulte por CEP</h3>
+    <form method="POST" id="zip-code-form">
+      {{ zipCodeForm.zipCode.label }} {{ zipCodeForm.zipCode(size=30) }} {{
+      zipCodeForm.submit(size=30) }}
+    </form>
+    {% if zipCodeMessage %}<span>{{ zipCodeMessage }}</span>{% endif %}
+  </div>
+  <div
+    class="tab-pane fade"
+    id="location-tab-pane"
+    role="tabpanel"
+    aria-labelledby="location-tab"
+    tabindex="0"
+  >
+    <h3 class="fs-3 mt-4">Consulte por IP</h3>
+    <form method="POST" id="location-form">
+      {{ locationForm.location.label }} {{ locationForm.location(size=30) }} {{
+      locationForm.submit(size=30) }}
+    </form>
+    {% if locationMessage %}<span>{{ locationMessage }}</span>{% endif %}
+  </div>
+  {% if zipCodeData %}
+  <div
+    class="tab-pane fade"
+    id="result-zip-code-tab-pane"
+    role="tabpanel"
+    aria-labelledby="result-zip-code-tab"
+    tabindex="0"
+  >
+    <section class="mt-4">
+      <h2 class="fs-3 mb-4 text-center">Resultado da consulta por CEP</h2>
+      <table id="zip-code-table" class="cell-border stripe">
+        <thead>
+          <tr>
+            <th>CEP</th>
+            <th>Logradouro</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ zipCodeData.cep }}</td>
+            <td>{{ zipCodeData.logradouro }}</td>
+            <td>
+              <button class="btn-show-subtable">+</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+  {% endif %} {% if locationData %}
+  <div
+    class="tab-pane fade"
+    id="result-location-tab-pane"
+    role="tabpanel"
+    aria-labelledby="result-location-tab"
+    tabindex="0"
+  >
+    <section class="mt-4">
+      <h2 class="fs-3 mb-4 text-center">Resultado da consulta por IP</h2>
+      <table id="location-table" class="cell-border stripe">
+        <thead>
+          <tr>
+            <th>Cidade</th>
+            <th>UF</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ locationData.city }}</td>
+            <td>{{ locationData.country_code }}</td>
+            <td>
+              <button class="btn-show-subtable">+</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
