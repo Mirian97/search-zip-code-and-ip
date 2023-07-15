@@ -104,16 +104,20 @@
           <tr>
             <th>CEP</th>
             <th>Logradouro</th>
-            <th></th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>UF</th>
+            <th>DDD</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>{{ zipCodeData.cep }}</td>
             <td>{{ zipCodeData.logradouro }}</td>
-            <td>
-              <button class="btn-show-subtable">+</button>
-            </td>
+            <td>{{ zipCodeData.bairro }}</td>
+            <td>{{ zipCodeData.localidade }}</td>
+            <td>{{ zipCodeData.uf }}</td>
+            <td>{{ zipCodeData.ddd }}</td>
           </tr>
         </tbody>
       </table>
@@ -133,17 +137,21 @@
         <thead>
           <tr>
             <th>Cidade</th>
-            <th>UF</th>
-            <th></th>
+            <th>País</th>
+            <th>Região</th>
+            <th>Capital</th>
+            <th>Fuso horário</th>
+            <th>Moeda</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>{{ locationData.city }}</td>
             <td>{{ locationData.country_code }}</td>
-            <td>
-              <button class="btn-show-subtable">+</button>
-            </td>
+            <td>{{ locationData.region }}</td>
+            <td>{{ locationData.country_capital }}</td>
+            <td>{{ locationData.timezone }}</td>
+            <td>{{ locationData.currency_name }}</td>
           </tr>
         </tbody>
       </table>
