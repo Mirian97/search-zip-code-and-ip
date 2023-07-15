@@ -56,13 +56,13 @@ def search():
                 response = requests.get(f"https://ipapi.co/{location}/json/")
                 locationData = response.json()
 
-                if locationData.get("reason") == "RateLimited":
-                    locationMessage = (
-                        "Consulte o IP mais tarde, as consultas foram excedidas",
-                    )
-
                 if locationData.get("error"):
-                    locationMessage = "IP inválido, por favor digite outro valor"
+                    if locationData.get("reason") == "RateLimited":
+                        locationMessage = (
+                            "Consulte o IP mais tarde, as consultas foram excedidas"
+                        )
+                    else:
+                        locationMessage = "IP inválido, por favor digite outro valor"
                     locationData = None
 
             except:
