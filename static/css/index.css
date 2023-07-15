@@ -69,3 +69,8 @@ input[type="submit"]:hover {
 .nav-item .nav-link:hover {
   color: var(--bs-black);
 }
+
+#zip-code-table_wrapper,
+#location-table_wrapper {
+  overflow-x: auto;
+}
